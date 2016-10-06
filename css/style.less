@@ -1,6 +1,7 @@
 @import "less/_reset.less";
 @import "less/_settings.less";
-@font-face { // не подключился через гугл :(
+
+@font-face { // чет не подключился через гугл :(
     font-family: "Fira Sans";
     src: url("../fonts/FiraSans-Light.eot");
     src: url("../fonts/FiraSans-Light.eot?#iefix") format("embedded-opentype"),
@@ -20,47 +21,91 @@
     font-weight: 500;
     font-style: normal;
 }
+
 body * {
     font-family: 'Fira Sans', sans-serif;
-    font-weight: 500;
     color: @dark-color;
+    font-weight: 500;
 }
-
+body{
+    width: 459px;
+    margin: 0 auto;
+}
 .acc_header{
-    margin: 25px 0 0 192px;
-    .acc_logo{
-        opacity: 1;
-    }
+    text-align: center;
+    margin-top: 30px;
 }
 .main_acc_wrap{
     margin-top: 19px;
-    margin-left: 69px;
-    width: 460px;
     .acc_item{
-        margin-bottom: 5px;
+        margin-bottom: 25px;
         .acc_link{
-            display: block;
-            background: @light-bg;
             padding: 15px 21px 12px;
-            border-radius: 20px;
-            font-size: 15px;
             letter-spacing: 0.07px;
+            background: @light-bg;
             text-decoration: none;
+            border-radius: 20px;
             position: relative;
+            .transition(0.4s);
+            display: block;
+            font-size: 15px;
             &:after{
                 content: "";
-                position: absolute;
-                right: 17px;
-                top: 50%;
-                margin-top: -4px;
-                width: 0;
-                height: 0;
                 border-left: 7px solid transparent;
                 border-right: 7px solid transparent;
                 border-top: 12px solid @funny-color;
+                transform: rotate(0deg);
+                position: absolute;
+                .transition(0.4s);
+                margin-top: -5px;
+                right: 21px;
+                top: 50%;
+                width: 0;
+                height: 0;
+            }
+        }
+        .acc_content{
+            .transition();
+            height: 0;
+            max-height: 0;
+            overflow: hidden;
+            font-weight: 300;
+            margin-top: -20px;
+            background: @light-bg;
+            border-radius: 0 0 20px 20px;
+            &:before{
+                content: "";
+                height: 14px;
+                width: 100%;
+                display: block;
+            }
+            .acc_child{
+                font-weight: 300;
+                font-size: 15px;
+                padding: 0 21px;
+                margin-bottom: 11px;
+                letter-spacing: 0.07px;
+            }
+            .acc_child:last-child{
+                padding-bottom: 12px;
+                margin-bottom: 0;
             }
         }
         &.current{
+            .acc_content{
+                display: block;
+                height: 100px;
+                max-height: 100px;
+                margin-bottom: -20px;
+                padding-top: 20px;
+            }
+            .acc_link{
+                &:after{
+                    transform: rotate(60deg);
+                }
+            }
+        }
+        &.current, &:hover{
             .acc_link{
                 background: @funny-color !important;
                 color: @light-color !important;
@@ -69,23 +114,16 @@ body * {
                 }
             }
         }
-        .acc_content{
-            font-weight: 300;
-            margin-top: -20px;
-            background: #e7e7e7;
-            border-radius: 0 0 20px 20px;
-            padding: 25px 15px 10px;
-            .acc_child{
-                font-weight: 300;
-                margin-left: 5px;
-            }
-        }
     }
     .acc_item:nth-child(odd){
-        opacity: 1;
         .acc_link{
             background: @dark-bg;
             color: @light-color;
         }
     }
+}
+
+.transition(@delay: .3s){
+    -webkit-transition:  all @delay ease;
+    transition:  all @delay ease;
 }
