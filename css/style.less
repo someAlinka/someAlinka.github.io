@@ -28,8 +28,13 @@ body * {
     font-weight: 500;
 }
 body{
+    opacity: 0;
     width: 459px;
     margin: 0 auto;
+    .transition(2s);
+    &.show{
+        opacity: 1;
+    }
 }
 .acc_header{
     text-align: center;

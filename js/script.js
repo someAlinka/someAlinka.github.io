@@ -3,20 +3,30 @@
 	var d = document,
 		accLinks = d.getElementsByClassName("acc_link");
 
+	setTimeout(function() {
+		d.getElementsByTagName("body")[0].className += "show";
+	}, 0);
+	
 	var accCallback = function() {
 	    var liClassName = this.parentNode.className;
 	    if(liClassName.indexOf("current") > -1){
 	    	this.parentNode.className = liClassName.replace(" current","");
 	    } else {
-	    	Array.from(accLinks).forEach(function(element) {
-				element.parentNode.className = element.parentNode.className.replace(" current","");
-		    });
+	    	for (var i = 0; i < accLinks.length ; i++) {
+				accLinks[i].parentNode.className = accLinks[i].parentNode.className.replace(" current","");
+		    }
 		    this.parentNode.className += " current";
 	    }
 	};
 
-	Array.from(accLinks).forEach(function(element) {
-		element.addEventListener('click', accCallback);
-    });
+	for (var i = 0; i < accLinks.length ; i++) {
+		if(typeof addEventListener !== 'undefined'){
+			accLinks[i].addEventListener('click', accCallback);
+		} else if (typeof attachEvent !== 'undefined'){
+			accLinks[i].addEventListener('onclick', accCallback);
+		} else {
+			accLinks[i]['onclick'] = accCallback;
+		}
+	}
 
 }());
