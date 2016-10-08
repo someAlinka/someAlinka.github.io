@@ -36,15 +36,15 @@ body{
         opacity: 1;
     }
 }
-.acc_header{
+.accordion_header{
     text-align: center;
     margin-top: 30px;
 }
-.main_acc_wrap{
+.main_accordion_wrap{
     margin-top: 19px;
-    .acc_item{
+    .accordion_item{
         margin-bottom: 25px;
-        .acc_link{
+        .accordion_link{
             padding: 15px 21px 12px;
             letter-spacing: 0.07px;
             background: @light-bg;
@@ -69,7 +69,7 @@ body{
                 height: 0;
             }
         }
-        .acc_content{
+        .accordion_content{
             .transition();
             height: 0;
             max-height: 0;
@@ -84,33 +84,33 @@ body{
                 width: 100%;
                 display: block;
             }
-            .acc_child{
+            .accordion_child{
                 font-weight: 300;
                 font-size: 15px;
                 padding: 0 21px;
                 margin-bottom: 11px;
                 letter-spacing: 0.07px;
             }
-            .acc_child:last-child{
+            .accordion_child:last-child{
                 margin-bottom: 12px;
             }
         }
         &.current{
-            .acc_content{
+            .accordion_content{
                 display: block;
                 height: 93px;
                 max-height: 93px;
                 margin-bottom: -20px;
                 padding-top: 20px;
             }
-            .acc_link{
+            .accordion_link{
                 &:after{
                     transform: rotate(60deg);
                 }
             }
         }
         &.current, &:hover{
-            .acc_link{
+            .accordion_link{
                 background: @funny-color !important;
                 color: @light-color !important;
                 &:after{
@@ -119,8 +119,8 @@ body{
             }
         }
     }
-    .acc_item:nth-child(odd){
-        .acc_link{
+    .accordion_item:nth-child(odd){
+        .accordion_link{
             background: @dark-bg;
             color: @light-color;
         }
