@@ -20,7 +20,7 @@
 	    }
 	};
 
-	if (typeof attachEvent !== 'undefined'){
+	if (typeof attachEvent !== 'undefined'){  //event for IE
 		crossEventType = "onclick";
 	}
 
