@@ -1,32 +1,33 @@
 ;(function(){
 
 	var doc = document,
+		crossEventType = "click",
 		accordionLinks = doc.getElementsByClassName("accordion_link");
 
 	setTimeout(function() {
 		doc.getElementsByTagName("body")[0].className += "show";
 	}, 0);
 	
-	var accordionCallback = function() {
-	    var liClassName = this.parentNode.className;
+	var accordionCallback = function(obj) {
+	    var liClassName = obj.parentNode.className;
 	    if(liClassName.indexOf("current") > -1){
-	    	this.parentNode.className = liClassName.replace(" current","");
+	    	obj.parentNode.className = liClassName.replace(" current","");
 	    } else {
 	    	for (var i = 0; i < accordionLinks.length ; i++) {
 				accordionLinks[i].parentNode.className = accordionLinks[i].parentNode.className.replace(" current","");
 		    }
-		    this.parentNode.className += " current";
+		    obj.parentNode.className += " current";
 	    }
 	};
 
-	for (var i = 0; i < accordionLinks.length ; i++) {
-		if(typeof addEventListener !== 'undefined'){
-			accordionLinks[i].addEventListener('click', accordionCallback);
-		} else if (typeof attachEvent !== 'undefined'){
-			accordionLinks[i].addEventListener('onclick', accordionCallback);
-		} else {
-			accordionLinks[i]['onclick'] = accordionCallback;
-		}
+	if (typeof attachEvent !== 'undefined'){
+		crossEventType = "onclick";
 	}
+
+	accordionList.addEventListener(crossEventType, function(event){
+		if(event.target.tagName == "A") accordionCallback(event.target);
+	});
+
+	
 
 }());
