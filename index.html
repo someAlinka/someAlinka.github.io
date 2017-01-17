@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="accordion">
 <head>
 	<meta charset="UTF-8">
 	<title>Accordion</title>
@@ -7,109 +7,18 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<header class="accordion_header"><img src="img/logo.png" alt="Тестовый аккордеон" title="Тестовый аккордеон"/></header>
-	<ul id="accordionList" class="main_accordion_wrap">
-		<li class="accordion_item current">
-			<a href="javascript:void(0)" class="accordion_link">Основы языка и как на нём говорить правильно</a>
-			<ul class="accordion_content">
-				<li class="accordion_child">Лексическая структура</li>
-				<li class="accordion_child">Типы данных, значения и переменные</li>
-				<li class="accordion_child">Выражения и операторы инструкции</li>
-			</ul>
-		</li>
-		<li class="accordion_item">
-			<a href="javascript:void(0)" class="accordion_link">Функции</a>
-			<ul class="accordion_content">
-				<li class="accordion_child">Какие такие функции?</li>
-				<li class="accordion_child">Где функции?</li>
-				<li class="accordion_child">Почему функции?</li>
-			</ul>
-		</li>
-		<li class="accordion_item">
-			<a href="javascript:void(0)" class="accordion_link">Обработка ошибок и отладка</a>
-			<ul class="accordion_content">
-				<li class="accordion_child">Какие такие ошибки?</li>
-				<li class="accordion_child">Где ошибки?</li>
-				<li class="accordion_child">Почему ошибки?</li>
-			</ul>
-		</li>
-		<li class="accordion_item">
-			<a href="javascript:void(0)" class="accordion_link">Объекты и массивы</a>
-			<ul class="accordion_content">
-				<li class="accordion_child">Какие такие массивы?</li>
-				<li class="accordion_child">Где объекты?</li>
-				<li class="accordion_child">Почему массивы?</li>
-			</ul>
-		</li>
-		<li class="accordion_item">
-			<a href="javascript:void(0)" class="accordion_link">События</a>
-			<ul class="accordion_content">
-				<li class="accordion_child">Какие такие события?</li>
-				<li class="accordion_child">Где события?</li>
-				<li class="accordion_child">Почему события?</li>
-			</ul>
-		</li>
-	</ul>
+	<div class="container" ng-controller="accordCtrl">
+		<header class="accordion_header"><img src="img/logo.png" alt="{{imgTitle}}" title="{{imgTitle}}"/></header>
+		<ul id="accordionList" class="main_accordion_wrap">
+			<li class="accordion_item" ng-class="{'current': listItem.active}" ng-repeat="listItem in accordItems">
+				<a href="javascript:void(0)" class="accordion_link">{{listItem.name}}</a>
+				<ul class="accordion_content">
+					<li class="accordion_child" ng-repeat="item in listItem.list">{{item}}</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-	<!-- Excitel {MY TEST call button} -->
-<script type="text/javascript">
-//<![CDATA[
-var widgetToken = '7d614665690ce8bfb7224a838b7a408c', // токен вашей кнопки
-widgetOptions = {}, // объект опций вашей кнопки
-apiOptions = { // опции с вашими данными
-     "customData": {
-         "cart" : [
-             {
-               "name": 'iPhone',
-               "price": '$100',
-               "qty": 2
-             }, {
-               "name": 'iPod',
-               "price": '$200',
-               "qty": 1
-             }, {
-               "name": 'iPod2',
-               "price": '$200',
-               "qty": 3
-             }, {
-               "name": 'iPod3',
-               "price": '$250',
-               "qty": 5
-             }, {
-               "name": 'iPod4',
-               "price": '$200',
-               "qty": 2
-             }, {
-               "name": 'iPod5',
-               "price": '$400',
-               "qty": 5
-             }, {
-               "name": 'iPod6',
-               "price": '$450',
-               "qty": 1
-             }, {
-               "name": 'iPod7',
-               "price": '$200',
-               "qty": 1
-             }
-         ],
-         "favorites" : [
-             "MacBook Pro",
-             "MacBook Mini"
-         ]
-     }
-};
-(function(t,o,a){var w=window,k='CallButtonConfig';w[k]=w[k]||[],(w[k][t]=w[k][t]||[]).push({"options":o||{},"apiOptions":a||{}})})(widgetToken, widgetOptions, apiOptions);
-//]]>
-</script>
-<!-- Excitel {/call button options} -->
-
-<!-- Excitel {call button} -->
-<script type="text/javascript">
-//<![CDATA[
-(function(){var widget=document.createElement('script');widget.type='text/javascript';widget.async=true;widget.src='http://exitel.loc/widget-7d614665690ce8bfb7224a838b7a408c.js';document.getElementsByTagName('head')[0].appendChild(widget);})();
-//]]>
-</script>
-<!-- Excitel {/call button} -->
 </body>
 </html>
